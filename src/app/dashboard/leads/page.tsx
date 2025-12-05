@@ -122,7 +122,7 @@ export default function LeadsPage() {
             size="sm"
             onClick={() => setSelectedStage(stage.id)}
             style={{
-              backgroundColor: selectedStage === stage.id ? stage.color : undefined,
+              backgroundColor: selectedStage === stage.id ? (stage.color || '#3b82f6') : undefined,
             }}
           >
             {stage.name}

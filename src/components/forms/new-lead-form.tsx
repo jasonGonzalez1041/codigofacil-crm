@@ -236,7 +236,7 @@ export function NewLeadForm({ onClose, onSuccess }: NewLeadFormProps) {
                           <div className="flex items-center space-x-2">
                             <div
                               className="w-3 h-3 rounded-full"
-                              style={{ backgroundColor: stage.color }}
+                              style={{ backgroundColor: stage.color || '#3b82f6' }}
                             />
                             <span>{stage.name}</span>
                           </div>

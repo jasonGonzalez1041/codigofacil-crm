@@ -11,22 +11,17 @@ export async function GET(request: NextRequest) {
     const limit = parseInt(searchParams.get('limit') || '50');
     const offset = parseInt(searchParams.get('offset') || '0');
 
-    let query = db
+    const result = await db
       .select({
         contact: contacts,
         company: companies,
       })
       .from(contacts)
       .leftJoin(companies, eq(contacts.companyId, companies.id))
+      .where(companyId ? eq(contacts.companyId, companyId) : undefined)
       .orderBy(desc(contacts.createdAt))
       .limit(limit)
       .offset(offset);
-
-    if (companyId) {
-      query = query.where(eq(contacts.companyId, companyId));
-    }
-
-    const result = await query;
     return NextResponse.json({ success: true, data: result });
   } catch (error) {
     console.error('Error fetching contacts:', error);

@@ -11,7 +11,7 @@ export async function GET(request: NextRequest) {
     const limit = parseInt(searchParams.get('limit') || '50');
     const offset = parseInt(searchParams.get('offset') || '0');
 
-    let query = db
+    const result = await db
       .select({
         lead: leads,
         company: companies,
@@ -22,15 +22,10 @@ export async function GET(request: NextRequest) {
       .leftJoin(companies, eq(leads.companyId, companies.id))
       .leftJoin(contacts, eq(leads.contactId, contacts.id))
       .leftJoin(pipelineStages, eq(leads.pipelineStageId, pipelineStages.id))
+      .where(stage ? eq(leads.pipelineStageId, stage) : undefined)
       .orderBy(desc(leads.createdAt))
       .limit(limit)
       .offset(offset);
-
-    if (stage) {
-      query = query.where(eq(leads.pipelineStageId, stage));
-    }
-
-    const result = await query;
 
     return NextResponse.json({ success: true, data: result });
   } catch (error) {

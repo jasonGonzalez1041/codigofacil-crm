@@ -11,18 +11,13 @@ export async function GET(request: NextRequest) {
     const limit = parseInt(searchParams.get('limit') || '50');
     const offset = parseInt(searchParams.get('offset') || '0');
 
-    let query = db
+    const result = await db
       .select()
       .from(companies)
+      .where(search ? ilike(companies.name, `%${search}%`) : undefined)
       .orderBy(desc(companies.createdAt))
       .limit(limit)
       .offset(offset);
-
-    if (search) {
-      query = query.where(ilike(companies.name, `%${search}%`));
-    }
-
-    const result = await query;
     return NextResponse.json({ success: true, data: result });
   } catch (error) {
     console.error('Error fetching companies:', error);

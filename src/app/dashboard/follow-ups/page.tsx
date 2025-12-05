@@ -75,7 +75,8 @@ export default function FollowUpsPage() {
     }
   };
 
-  const getStatusColor = (status: string, dueDate: string) => {
+  const getStatusColor = (status: string, dueDate: string | null) => {
+    if (!dueDate) return 'bg-gray-100 text-gray-800 border-gray-200';
     const today = new Date().toISOString().split('T')[0];
     const isOverdue = status === 'pending' && dueDate < today;
     
@@ -91,12 +92,14 @@ export default function FollowUpsPage() {
     }
   };
 
-  const isOverdue = (status: string, dueDate: string) => {
+  const isOverdue = (status: string, dueDate: string | null) => {
+    if (!dueDate) return false;
     const today = new Date().toISOString().split('T')[0];
     return status === 'pending' && dueDate < today;
   };
 
-  const formatDate = (dateString: string) => {
+  const formatDate = (dateString: string | null) => {
+    if (!dateString) return 'Sin fecha';
     const date = new Date(dateString);
     const today = new Date();
     const tomorrow = new Date(today);
@@ -118,6 +121,7 @@ export default function FollowUpsPage() {
   const pendingCount = followUps.filter(item => item.followUp.status === 'pending').length;
   const overdueCount = followUps.filter(item => 
     item.followUp.status === 'pending' && 
+    item.followUp.dueDate && 
     item.followUp.dueDate < new Date().toISOString().split('T')[0]
   ).length;
   const completedCount = followUps.filter(item => item.followUp.status === 'completed').length;

@@ -1,11 +1,9 @@
 import { AppSidebar } from "@/components/app-sidebar"
-import { ChartAreaInteractive } from "@/components/chart-area-interactive"
-import { DataTable } from "@/components/data-table"
-import { SectionCards } from "@/components/section-cards"
+import { DashboardMetricsReal } from "@/components/dashboard-metrics-real"
+import { RealActivity } from "@/components/real-activity"
+import { DataTableReal } from "@/components/data-table-real"
 import { SiteHeader } from "@/components/site-header"
 import { SidebarInset, SidebarProvider } from "@/components/ui/sidebar"
-
-import data from "./data.json"
 
 export default function Page() {
   return (
@@ -14,14 +12,37 @@ export default function Page() {
       <SidebarInset>
         <SiteHeader />
         <div className="flex flex-1 flex-col">
-          <div className="@container/main flex flex-1 flex-col gap-2">
-            <div className="flex flex-col gap-4 py-4 md:gap-6 md:py-6">
-              <SectionCards />
-              <div className="px-4 lg:px-6">
-                <ChartAreaInteractive />
+          <div className="@container/main flex flex-1 flex-col gap-6 p-4 lg:p-6">
+            {/* Real Dashboard Metrics */}
+            <div>
+              <div className="mb-4">
+                <h2 className="text-2xl font-bold tracking-tight">Dashboard CRM</h2>
+                <p className="text-muted-foreground">
+                  Métricas en tiempo real de tu pipeline de ventas
+                </p>
               </div>
-              <DataTable data={data} />
+              <DashboardMetricsReal />
             </div>
+
+            {/* Activity and Data Grid */}
+            <div className="grid gap-6 lg:grid-cols-3">
+              <div className="lg:col-span-1">
+                <RealActivity />
+              </div>
+              <div className="lg:col-span-2">
+                {/* Quick actions or mini charts could go here */}
+                <div className="h-full flex items-center justify-center text-muted-foreground">
+                  <p className="text-center">
+                    📊 Espacio reservado para gráficos en tiempo real
+                    <br />
+                    <span className="text-sm">Charts conectados próximamente</span>
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            {/* Real Data Table */}
+            <DataTableReal />
           </div>
         </div>
       </SidebarInset>

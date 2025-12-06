@@ -4,19 +4,16 @@ import * as React from "react"
 import {
   ArrowUpCircleIcon,
   BarChartIcon,
-  CameraIcon,
+  Building2 as BuildingIcon,
   ClipboardListIcon,
   DatabaseIcon,
-  FileCodeIcon,
-  FileIcon,
   FileTextIcon,
-  FolderIcon,
-  HelpCircleIcon,
   LayoutDashboardIcon,
-  ListIcon,
   SearchIcon,
   SettingsIcon,
   UsersIcon,
+  PhoneIcon,
+  CalendarIcon,
 } from "lucide-react"
 
 import { NavDocuments } from "@/components/nav-documents"
@@ -35,9 +32,9 @@ import {
 
 const data = {
   user: {
-    name: "CodigoFacil Team",
-    email: "equipo@codigofacil.com",
-    avatar: "/avatars/codigofacil.jpg",
+    name: "Administrador CRM",
+    email: "admin@codigofacil.com",
+    avatar: "/avatars/admin.jpg",
   },
   navMain: [
     {
@@ -48,70 +45,39 @@ const data = {
     {
       title: "Leads",
       url: "/dashboard/leads",
-      icon: UsersIcon,
+      icon: ArrowUpCircleIcon,
     },
     {
       title: "Pipeline",
-      url: "/dashboard/pipeline",
+      url: "/dashboard/pipeline", 
       icon: BarChartIcon,
     },
     {
-      title: "Seguimientos",
-      url: "/dashboard/follow-ups",
-      icon: ClipboardListIcon,
+      title: "Empresas",
+      url: "/dashboard/companies",
+      icon: BuildingIcon,
     },
-    {
-      title: "Clientes",
-      url: "/dashboard/clients",
-      icon: FolderIcon,
-    },
-  ],
-  navClouds: [
     {
       title: "Contactos",
-      icon: UsersIcon,
-      isActive: true,
       url: "/dashboard/contacts",
-      items: [
-        {
-          title: "Contactos Activos",
-          url: "/dashboard/contacts",
-        },
-        {
-          title: "Archivados",
-          url: "/dashboard/contacts/archived",
-        },
-      ],
+      icon: UsersIcon,
+    },
+  ],
+  navCRM: [
+    {
+      name: "Seguimientos",
+      icon: CalendarIcon,
+      url: "/dashboard/follow-ups",
     },
     {
-      title: "Propuestas",
+      name: "Actividades",
+      icon: ClipboardListIcon,
+      url: "/dashboard/activities",
+    },
+    {
+      name: "Reportes",
       icon: FileTextIcon,
-      url: "/dashboard/proposals",
-      items: [
-        {
-          title: "Propuestas Activas",
-          url: "/dashboard/proposals",
-        },
-        {
-          title: "Enviadas",
-          url: "/dashboard/proposals/sent",
-        },
-      ],
-    },
-    {
-      title: "Comunicación",
-      icon: FileCodeIcon,
-      url: "/dashboard/communication",
-      items: [
-        {
-          title: "Email",
-          url: "/dashboard/email",
-        },
-        {
-          title: "Llamadas",
-          url: "/dashboard/calls",
-        },
-      ],
+      url: "/dashboard/reports",
     },
   ],
   navSecondary: [
@@ -121,9 +87,9 @@ const data = {
       icon: SettingsIcon,
     },
     {
-      title: "Soporte",
+      title: "Ayuda",
       url: "/dashboard/help",
-      icon: HelpCircleIcon,
+      icon: PhoneIcon,
     },
     {
       title: "Buscar",
@@ -138,14 +104,14 @@ const data = {
       icon: DatabaseIcon,
     },
     {
-      name: "Reportes",
+      name: "Reportes CRM",
       url: "/dashboard/reports",
       icon: ClipboardListIcon,
     },
     {
-      name: "Documentos",
-      url: "/dashboard/documents",
-      icon: FileIcon,
+      name: "Exportar Datos",
+      url: "/dashboard/export",
+      icon: FileTextIcon,
     },
   ],
 }
@@ -170,6 +136,7 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
       </SidebarHeader>
       <SidebarContent>
         <NavMain items={data.navMain} />
+        <NavDocuments items={data.navCRM} />
         <NavDocuments items={data.documents} />
         <NavSecondary items={data.navSecondary} className="mt-auto" />
       </SidebarContent>

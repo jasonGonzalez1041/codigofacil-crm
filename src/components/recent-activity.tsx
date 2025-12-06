@@ -94,7 +94,8 @@ export function RecentActivity() {
               <div className="flex items-center justify-between">
                 <p className="text-sm font-medium">{activity.title}</p>
                 <Badge 
-                  variant={activity.status} 
+                  variant={activity.status === 'success' ? 'default' : 
+                          activity.status === 'warning' ? 'secondary' : 'destructive'} 
                   className="text-xs"
                 >
                   {activity.status === 'success' ? 'Completado' : 

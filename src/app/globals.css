@@ -1,4 +1,6 @@
 @tailwind base;
+
+@custom-variant dark (&:is(.dark *));
 @tailwind components;
 @tailwind utilities;
 
@@ -62,17 +64,16 @@
 
 @layer base {
   * {
-    border-color: hsl(var(--border));
     @apply transition-colors duration-200;
   }
-  
+
   body {
     background: hsl(var(--background));
     color: hsl(var(--foreground));
     font-feature-settings: "rlig" 1, "calt" 1;
     @apply antialiased;
   }
-  
+
   /* Glass morphism utility */
   .glass {
     background: rgba(255, 255, 255, 0.1);
@@ -80,68 +81,68 @@
     border: 1px solid rgba(255, 255, 255, 0.2);
     box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.15);
   }
-  
+
   .glass-dark {
     background: rgba(0, 0, 0, 0.1);
     backdrop-filter: blur(16px);
     border: 1px solid rgba(255, 255, 255, 0.1);
     box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.25);
   }
-  
+
   /* Card with subtle gradient */
   .card-gradient {
     background: linear-gradient(135deg, hsl(var(--card)) 0%, hsl(var(--muted)) 100%);
     border: 1px solid hsl(var(--border) / 0.5);
     box-shadow: 0 4px 20px 0 rgba(0, 0, 0, 0.05);
   }
-  
+
   /* Animated gradient backgrounds */
   .gradient-animated {
     background: linear-gradient(-45deg, hsl(210 90% 58%), hsl(250 85% 65%), hsl(200 95% 60%), hsl(220 90% 55%));
     background-size: 400% 400%;
     animation: gradientShift 8s ease infinite;
   }
-  
+
   .gradient-primary {
     background: linear-gradient(135deg, hsl(210 90% 58%) 0%, hsl(250 85% 65%) 100%);
   }
-  
+
   .gradient-secondary {
     background: linear-gradient(135deg, hsl(200 95% 60%) 0%, hsl(210 90% 58%) 100%);
   }
-  
+
   @keyframes gradientShift {
     0% { background-position: 0% 50%; }
     50% { background-position: 100% 50%; }
     100% { background-position: 0% 50%; }
   }
-  
+
   /* Smooth animations */
   .animate-fade-in {
     animation: fadeIn 0.5s ease-out forwards;
   }
-  
+
   .animate-slide-up {
     animation: slideUp 0.6s ease-out forwards;
   }
-  
+
   .animate-slide-in-left {
     animation: slideInLeft 0.6s ease-out forwards;
   }
-  
+
   .animate-scale-in {
     animation: scaleIn 0.4s ease-out forwards;
   }
-  
+
   .animate-pulse-glow {
     animation: pulseGlow 2s ease-in-out infinite;
   }
-  
+
   @keyframes fadeIn {
     from { opacity: 0; }
     to { opacity: 1; }
   }
-  
+
   @keyframes slideUp {
     from { 
       opacity: 0; 
@@ -152,7 +153,7 @@
       transform: translateY(0); 
     }
   }
-  
+
   @keyframes slideInLeft {
     from { 
       opacity: 0; 
@@ -163,7 +164,7 @@
       transform: translateX(0); 
     }
   }
-  
+
   @keyframes scaleIn {
     from { 
       opacity: 0; 
@@ -174,7 +175,7 @@
       transform: scale(1); 
     }
   }
-  
+
   @keyframes pulseGlow {
     0%, 100% {
       box-shadow: 0 0 20px rgba(59, 130, 246, 0.3);
@@ -183,17 +184,17 @@
       box-shadow: 0 0 40px rgba(59, 130, 246, 0.5);
     }
   }
-  
+
   /* Hover effects */
   .hover-lift {
     @apply transition-all duration-300;
   }
-  
+
   .hover-lift:hover {
     transform: translateY(-2px);
     box-shadow: 0 10px 40px 0 rgba(0, 0, 0, 0.1);
   }
-  
+
   .hover-glow:hover {
     box-shadow: 0 0 20px rgba(59, 130, 246, 0.3);
   }
@@ -263,4 +264,47 @@
 @keyframes loading {
   0% { background-position: 200% 0; }
   100% { background-position: -200% 0; }
+}
+
+:root {
+  --sidebar: hsl(0 0% 98%);
+  --sidebar-foreground: hsl(240 5.3% 26.1%);
+  --sidebar-primary: hsl(240 5.9% 10%);
+  --sidebar-primary-foreground: hsl(0 0% 98%);
+  --sidebar-accent: hsl(240 4.8% 95.9%);
+  --sidebar-accent-foreground: hsl(240 5.9% 10%);
+  --sidebar-border: hsl(220 13% 91%);
+  --sidebar-ring: hsl(217.2 91.2% 59.8%);
+}
+
+.dark {
+  --sidebar: hsl(240 5.9% 10%);
+  --sidebar-foreground: hsl(240 4.8% 95.9%);
+  --sidebar-primary: hsl(224.3 76.3% 48%);
+  --sidebar-primary-foreground: hsl(0 0% 100%);
+  --sidebar-accent: hsl(240 3.7% 15.9%);
+  --sidebar-accent-foreground: hsl(240 4.8% 95.9%);
+  --sidebar-border: hsl(240 3.7% 15.9%);
+  --sidebar-ring: hsl(217.2 91.2% 59.8%);
+}
+
+@theme inline {
+  --color-sidebar: var(--sidebar);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-ring: var(--sidebar-ring);
+}
+
+@layer base {
+  * {
+    border-color: #e5e7eb;
+  }
+  body {
+    background-color: hsl(var(--background));
+    color: hsl(var(--foreground));
+  }
 }

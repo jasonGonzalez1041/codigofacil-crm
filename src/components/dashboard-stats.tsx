@@ -89,7 +89,7 @@ export function DashboardStats() {
         return (
           <Card 
             key={index} 
-            className={`group relative overflow-hidden hover-lift bg-gradient-to-br ${stat.bgGradient} dark:from-card dark:to-card/90 border-border/50 hover:border-primary/30 transition-all duration-500 animate-scale-in ${stat.featured ? 'ring-2 ring-primary/20 shadow-xl shadow-primary/10' : ''}`}
+            className={`group relative overflow-hidden hover-lift bg-gradient-to-br ${stat.bgGradient} dark:from-card dark:to-card/90 border-gray-200/50 hover:border-primary/30 transition-all duration-500 animate-scale-in ${stat.featured ? 'ring-2 ring-primary/20 shadow-xl shadow-primary/10' : ''}`}
             style={{ animationDelay: `${index * 100}ms` }}
           >
             {/* Background pattern */}

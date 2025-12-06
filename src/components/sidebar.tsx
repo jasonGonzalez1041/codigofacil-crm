@@ -126,9 +126,9 @@ export function Sidebar({ className }: SidebarProps) {
   const pathname = usePathname()
 
   return (
-    <div className={cn('flex h-full w-64 flex-col bg-gradient-to-b from-card/95 to-card border-r border-border/50 backdrop-blur-xl animate-slide-in-left', className)}>
+    <div className={cn('flex h-full w-64 flex-col bg-gradient-to-b from-card/95 to-card border-r border-gray-200/50 backdrop-blur-xl animate-slide-in-left', className)}>
       {/* Enhanced Logo Section */}
-      <div className="flex h-16 items-center border-b border-border/50 px-6 bg-gradient-to-r from-primary/5 to-accent/5">
+      <div className="flex h-16 items-center border-b border-gray-200/50 px-6 bg-gradient-to-r from-primary/5 to-accent/5">
         <Link href="/dashboard" className="flex items-center group">
           <div className="relative">
             <div className="absolute inset-0 bg-gradient-to-r from-primary to-accent rounded-lg blur opacity-20 group-hover:opacity-40 transition-opacity duration-300" />
@@ -227,7 +227,7 @@ export function Sidebar({ className }: SidebarProps) {
       </nav>
 
       {/* Enhanced Quick Actions */}
-      <div className="px-3 py-3 border-t border-border/50">
+      <div className="px-3 py-3 border-t border-gray-200/50">
         <Button className="w-full bg-gradient-to-r from-primary to-accent hover:from-primary/90 hover:to-accent/90 text-white font-medium shadow-lg hover:shadow-xl transition-all duration-300 hover-lift">
           <Zap className="h-4 w-4 mr-2" />
           Nuevo Lead
@@ -235,7 +235,7 @@ export function Sidebar({ className }: SidebarProps) {
       </div>
 
       {/* Enhanced Bottom Navigation */}
-      <div className="border-t border-border/50 px-3 py-3 bg-gradient-to-r from-muted/30 to-muted/50">
+      <div className="border-t border-gray-200/50 px-3 py-3 bg-gradient-to-r from-muted/30 to-muted/50">
         {bottomNavigation.map((item) => {
           const isActive = pathname === item.href
           const Icon = item.icon

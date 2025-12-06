@@ -1,21 +1,7 @@
-import type { NextConfig } from 'next'
+import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
-  experimental: {
-    optimizePackageImports: ['@radix-ui/react-icons'],
-  },
-  images: {
-    remotePatterns: [
-      {
-        protocol: 'https',
-        hostname: 'images.unsplash.com',
-      },
-      {
-        protocol: 'https',
-        hostname: 'github.com',
-      },
-    ],
-  },
-}
+  // Clean configuration for production deployment
+};
 
-export default nextConfig
+export default nextConfig;

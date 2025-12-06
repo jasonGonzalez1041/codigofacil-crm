@@ -1,0 +1,12 @@
+{
+  "buildCommand": "npm run build",
+  "outputDirectory": ".next",
+  "framework": "nextjs",
+  "installCommand": "npm install",
+  "env": {
+    "TURSO_DATABASE_URL": "@turso_database_url",
+    "TURSO_AUTH_TOKEN": "@turso_auth_token",
+    "NEXT_PUBLIC_APP_NAME": "CodigoFacil CRM",
+    "NEXT_PUBLIC_APP_VERSION": "2.0.0"
+  }
+}

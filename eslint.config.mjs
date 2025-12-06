@@ -1,21 +1,18 @@
-export default [
-  {
-    files: ["src/**/*.{js,jsx,ts,tsx}"],
-    ignores: [
-      "node_modules/**",
-      ".next/**",
-      "dist/**",
-      "build/**",
-      ".turbo/**",
-      "coverage/**",
-      ".nyc_output/**",
-      "*.config.*",
-      "drizzle/**"
-    ],
-    rules: {
-      "no-unused-vars": "off",
-      "prefer-const": "off",
-      "no-var": "off",
-    },
-  },
-];
+import { defineConfig, globalIgnores } from "eslint/config";
+import nextVitals from "eslint-config-next/core-web-vitals";
+import nextTs from "eslint-config-next/typescript";
+
+const eslintConfig = defineConfig([
+  ...nextVitals,
+  ...nextTs,
+  // Override default ignores of eslint-config-next.
+  globalIgnores([
+    // Default ignores of eslint-config-next:
+    ".next/**",
+    "out/**",
+    "build/**",
+    "next-env.d.ts",
+  ]),
+]);
+
+export default eslintConfig;

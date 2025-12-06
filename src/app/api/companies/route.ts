@@ -72,7 +72,7 @@ export async function POST(request: NextRequest) {
       city,
       country: country || 'Costa Rica',
       employees,
-      revenue: revenue ? parseFloat(revenue) : null,
+      revenue: revenue ? parseFloat(revenue) : undefined,
       notes,
     });
 

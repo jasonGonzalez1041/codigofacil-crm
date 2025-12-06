@@ -59,6 +59,10 @@ export async function POST(request: NextRequest) {
       revenue,
       notes,
     } = validatedData;
+    
+    // Convert string inputs to proper types
+    const employeesNum = employees ? parseInt(employees.toString(), 10) : undefined;
+    const revenueNum = revenue ? parseFloat(revenue.toString()) : undefined;
 
     const companyId = nanoid();
 
@@ -71,8 +75,8 @@ export async function POST(request: NextRequest) {
       address,
       city,
       country: country || 'Costa Rica',
-      employees,
-      revenue: revenue ? parseFloat(revenue) : undefined,
+      employees: employeesNum,
+      revenue: revenueNum,
       notes,
     });
 
@@ -89,7 +93,7 @@ export async function POST(request: NextRequest) {
         { 
           success: false, 
           error: 'Validation error',
-          details: error.errors 
+          details: error.issues 
         },
         { status: 400 }
       );

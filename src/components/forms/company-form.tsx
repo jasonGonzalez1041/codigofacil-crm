@@ -18,7 +18,7 @@ const companySchema = z.object({
   phone: z.string().optional(),
   address: z.string().optional(),
   city: z.string().optional(),
-  country: z.string().default("Costa Rica"),
+  country: z.string().optional(),
   employees: z.number().positive().optional(),
   revenue: z.number().positive().optional(),
   notes: z.string().optional(),

@@ -21,7 +21,7 @@ const contactSchema = z.object({
   phone: z.string().optional(),
   position: z.string().optional(),
   department: z.string().optional(),
-  isPrimary: z.boolean().default(false),
+  isPrimary: z.boolean().optional(),
   notes: z.string().optional(),
 })
 

@@ -3,6 +3,7 @@ import { db } from '@/lib/db';
 import { companies } from '@/lib/schema';
 import { eq, desc, ilike } from 'drizzle-orm';
 import { nanoid } from 'nanoid';
+import { z } from 'zod';
 
 export async function GET(request: NextRequest) {
   try {
@@ -28,9 +29,24 @@ export async function GET(request: NextRequest) {
   }
 }
 
+const createCompanySchema = z.object({
+  name: z.string().min(1, 'Company name is required').max(200),
+  industry: z.string().optional(),
+  website: z.string().url('Invalid URL').optional().or(z.literal('')),
+  phone: z.string().optional(),
+  address: z.string().optional(),
+  city: z.string().optional(),
+  country: z.string().optional(),
+  employees: z.number().positive().optional(),
+  revenue: z.number().positive().optional(),
+  notes: z.string().optional(),
+});
+
 export async function POST(request: NextRequest) {
   try {
     const body = await request.json();
+    const validatedData = createCompanySchema.parse(body);
+    
     const {
       name,
       industry,
@@ -42,7 +58,7 @@ export async function POST(request: NextRequest) {
       employees,
       revenue,
       notes,
-    } = body;
+    } = validatedData;
 
     const companyId = nanoid();
 
@@ -68,6 +84,17 @@ export async function POST(request: NextRequest) {
 
     return NextResponse.json({ success: true, data: newCompany[0] });
   } catch (error) {
+    if (error instanceof z.ZodError) {
+      return NextResponse.json(
+        { 
+          success: false, 
+          error: 'Validation error',
+          details: error.errors 
+        },
+        { status: 400 }
+      );
+    }
+    
     console.error('Error creating company:', error);
     return NextResponse.json(
       { success: false, error: 'Failed to create company' },

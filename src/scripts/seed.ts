@@ -1,5 +1,5 @@
 #!/usr/bin/env node
-import { seedDatabase } from '../lib/seed';
+import { seedDatabase } from '../lib/seed.js';
 
 async function main() {
   try {
